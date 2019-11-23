@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <title>One-armed bandit</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        let ile = 0;
+        let ileWygranych = 0;
+        let hajs = 500;
+
+        function start() {
+            document.getElementById("pole1").innerHTML = "<img src='3.jpg'>";
+            document.getElementById("pole2").innerHTML = "<img src='3.jpg'>";
+            document.getElementById("pole3").innerHTML = "<img src='3.jpg'>";
+            document.getElementById("hajs").innerHTML = "<h3>Kwota: " + hajs + "</h3>";
+        }
+
+        function spin() {
+            let x1 = Math.random();
+            x1 = Math.floor(x1 * 3 + 1);
+            let x2 = Math.random();
+            x2 = Math.floor(x2 * 3 + 1);
+            let x3 = Math.random();
+            x3 = Math.floor(x3 * 3 + 1);
+
+            znak1 = "<img src=\"" + x1 + ".jpg\">";
+
+            document.getElementById("pole1").innerHTML = znak1;
+
+            znak2 = "<img src=\"" + x2 + ".jpg\">";
+
+            document.getElementById("pole2").innerHTML = znak2;
+
+            znak3 = "<img src=\"" + x3 + ".jpg\">";
+
+            document.getElementById("pole3").innerHTML = znak3;
+
+            ile++;
+
+            if ((x1 == x2) && (x1 == x3)) {
+                document.getElementById("Wynik").innerHTML = "<h2>You win!</h2>";
+                ileWygranych++;
+                hajs += 100;
+            } else {
+                document.getElementById("Wynik").innerHTML = "<h2>You lose!</h2>";
+                hajs -= 20;
+            }
+            document.getElementById("ileG").innerHTML = "<h3> Gier: " + ile + " <br> Wygranych: " + ileWygranych + "</h3>";
+            document.getElementById("hajs").innerHTML = "<h3>Kwota: " + hajs + "</h3>";
+
+
+        }
+    </script>
+</head>
+
+<body onload="start()">
+    <div id="ramka">
+        <h1>One-armed bandit</h1>
+        <div id="pole1"></div>
+        <div id="pole2"></div>
+        <div id="pole3"></div>
+
+        <div id="przycisk"> <button onclick="spin()">Click to play!</button> </div>
+        <br><br>
+        <div id="Wynik"></div>
+        <br><br>
+        <div id="ileG"></div>
+        <br>
+        <div id="hajs"></div>
+    </div>
+
+
+
+</body></html>
